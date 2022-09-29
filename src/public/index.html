@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Um teste muito louco</title>
+</head>
+
+<script>
+    function doRequest(data) {
+        console.log(data)
+        fetch("http://localhost:3330/mqtt", {
+            referrerPolicy: "strict-origin-when-cross-origin",
+            body: JSON.stringify(data),
+            method: "POST",
+        }).then(
+            res=>console.log(res.json())
+        );
+    }
+    
+    function main() {
+        const topicField = document.querySelector('#topic');
+        const messageField = document.querySelector('#message');
+
+        const message = messageField.value || "Hello World!";
+        const topic = topicField.value || 'teste';
+
+        doRequest({
+            topic,
+            message
+        })
+    }
+    window.onkeydown=doRequest
+</script>
+<body>
+    <section style="display:flex; flex-direction:column; width: max-content">
+        <input id="topic" type="text" placeholder="Digite o tópico" value="defaultTopic">
+        <input id="message" type="text" placeholder="Digite a mensagem" value="Ola mundo">
+        <button id="btn" onclick="main()">Enviar</button>
+    </section>
+
+    <section>
+        <canvas id="main-canvas"></canvas>
+    </section>
+</body>
+</html>
