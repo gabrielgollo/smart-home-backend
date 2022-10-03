@@ -7,13 +7,15 @@ class MqttController{
         try {
             await mqttService.publish(message, topic);
             return {
-                message: 'Message published successfully'
+                message: 'Message published successfully',
+                status: 200
             }
             
         } catch (error) {
             return {
                 errorStack: error.message,
-                message: 'Error publishing message'
+                message: 'Error publishing message',
+                status: 500
             }
         }
 

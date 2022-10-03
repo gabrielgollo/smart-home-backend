@@ -9,6 +9,7 @@ const { HTTP_SERVER_PORT } = process.env
 
 
 app.use(express.json());
+app.use(express.static('./src/public'))
 app.use(router)
 
 class Server{

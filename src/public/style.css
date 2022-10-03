@@ -1,0 +1,14 @@
+#main-section {
+    display:flex;
+    flex-direction:column;
+    width: max-content;
+    margin: auto;
+    margin-top: calc(100vh - 70vh);
+    padding: 60px;
+    background-color: darkgray;
+    color:black;
+}
+
+body {
+    background-color: black;
+}

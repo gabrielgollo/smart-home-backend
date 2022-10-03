@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Um teste muito louco</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <script>
@@ -12,8 +13,12 @@
         console.log(data)
         fetch("http://localhost:3330/mqtt", {
             referrerPolicy: "strict-origin-when-cross-origin",
-            body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             method: "POST",
+            body: JSON.stringify(data),
         }).then(
             res=>console.log(res.json())
         );
@@ -31,12 +36,29 @@
             message
         })
     }
+
+    function callServo() {
+        const topic = "D4";
+        const messageField = document.querySelector('#servo');
+
+        const message = messageField.value;
+
+        doRequest({
+            topic,
+            message
+        })
+    }
+
     window.onkeydown=doRequest
 </script>
 <body>
-    <section style="display:flex; flex-direction:column; width: max-content">
+    <section id="main-section">
+        <label>Topico:</label>
         <input id="topic" type="text" placeholder="Digite o tópico" value="defaultTopic">
+        <label>Mensagem:</label>
         <input id="message" type="text" placeholder="Digite a mensagem" value="Ola mundo">
+        <label>Angulo Servo:</label>
+        <input type="range" min="0" max="180" value="50" class="slider" id="servo" onchange="">
         <button id="btn" onclick="main()">Enviar</button>
     </section>
 
