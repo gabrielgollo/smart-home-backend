@@ -6,61 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Um teste muito louco</title>
     <link rel="stylesheet" href="style.css">
+    <script src="scripts.js"></script>
 </head>
-
-<script>
-    function doRequest(data) {
-        console.log(data)
-        fetch("http://localhost:3330/mqtt", {
-            referrerPolicy: "strict-origin-when-cross-origin",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(data),
-        }).then(
-            res=>console.log(res.json())
-        );
-    }
-    
-    function main() {
-        const topicField = document.querySelector('#topic');
-        const messageField = document.querySelector('#message');
-
-        const message = messageField.value || "Hello World!";
-        const topic = topicField.value || 'teste';
-
-        doRequest({
-            topic,
-            message
-        })
-    }
-
-    function callServo() {
-        const topic = "D4";
-        const messageField = document.querySelector('#servo');
-
-        const message = messageField.value;
-
-        doRequest({
-            topic,
-            message
-        })
-    }
-
-    window.onkeydown=doRequest
-</script>
 <body>
     <section id="main-section">
         <label>Topico:</label>
-        <input id="topic" type="text" placeholder="Digite o tópico" value="defaultTopic">
+        <input id="topic" type="text" placeholder="Digite o tópico" value="esp8266/0">
         <label>Mensagem:</label>
-        <input id="message" type="text" placeholder="Digite a mensagem" value="Ola mundo">
+        <input id="message" type="text" placeholder="Digite a mensagem" value="D4-0">
         <label>Angulo Servo:</label>
-        <input type="range" min="0" max="180" value="50" class="slider" id="servo" onchange="">
-        <button id="btn" onclick="main()">Enviar</button>
+        <input type="range" min="1" max="179" value="50" class="slider" id="servo" oninput="callServo()">
+        <button id="btn" onclick="sendToServer()">Enviar</button>
+        
+        
+        <div id="led">
+            <div align="center" class="led-box" onclick="toggleLed1()">
+                <p>LED1:</p>
+                <div class="led-red"></div>
+            </div>
+        </div>
     </section>
+
 
     <section>
         <canvas id="main-canvas"></canvas>
