@@ -8,7 +8,8 @@ function doRequest(data) {
             referrerPolicy: "strict-origin-when-cross-origin",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             method: "POST",
             body: data,
@@ -49,14 +50,15 @@ async function callServo() {
     setTimeout(()=>{isDoingRequest=false}, 100);
 }
 
-async function toggleLed1(){
+async function toggleLed(espId, ledId){
     led1 = !led1;
     const data = JSON.stringify({
-        topic: "esp8266/0",
-        message: [1, 5, Number(led1)]
+        topic: espId,
+        message: [1, Number(ledId), Number(led1)]
     })
     await doRequest(data)
 }
+
 
 // window.onkeydown=doRequest
 

@@ -18,13 +18,38 @@
         <input type="range" min="1" max="179" value="50" class="slider" id="servo" oninput="callServo()">
         <button id="btn" onclick="sendToServer()">Enviar</button>
         
+        <div id="led0">
+            <h1>ESP8266/1</h1>
+            <div align="center" class="led-box" onclick="toggleLed('esp8266/0')">
+                <p>LED1:</p>
+                <div class="led-red"></div>
+            </div>
+
+            <div align="center" class="led-box" onclick="toggleLed('esp8266/0')">
+                <p>LED2:</p>
+                <div class="led-red"></div>
+            </div>
+
+            <div align="center" class="led-box" onclick="toggleLed('esp8266/0')">
+                <p>LED3:</p>
+                <div class="led-red"></div>
+            </div>
+
+        </div>
         
-        <div id="led">
-            <div align="center" class="led-box" onclick="toggleLed1()">
+        <div id="led1">
+            <h1>ESP8266/1</h1>
+            <div align="center" class="led-box" onclick="toggleLed('esp8266/1', 5)">
                 <p>LED1:</p>
                 <div class="led-red"></div>
             </div>
         </div>
+
+
+        
+            
+
+    </div>
     </section>
 
 

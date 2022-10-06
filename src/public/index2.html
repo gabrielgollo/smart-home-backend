@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle da Sala 02</title>
+</head>
+
+<script>
+    function doRequest(data) {
+        console.log(data)
+        fetch("http://localhost:3330/mqtt", {
+            referrerPolicy: "strict-origin-when-cross-origin",
+            body: JSON.stringify(data),referrerPolicy: "strict-origin-when-cross-origin",
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+            },
+            method: "POST",
+        }).then(
+            res=>console.log(res.json())
+        )
+        .catch(err => console.error(err));
+    }
+    
+</script>
+<body>
+    <div style="display:flex; flex-direction:row; width: max-content">
+        Lampada 00: 
+        <button id="btn031" onclick="doRequest({topic: 'Room02' ,message: '001'})">ON</button>
+        <button id="btn030" onclick="doRequest({topic: 'Room02' ,message: '000'})">OFF</button>
+    </div>
+    <br>
+    <div style="display:flex; flex-direction:row; width: max-content">
+        Lampada 01: 
+        <button id="btn031" onclick="doRequest({topic: 'Room02' ,message: '011'})">ON</button>
+        <button id="btn030" onclick="doRequest({topic: 'Room02' ,message: '010'})">OFF</button>
+    </div>
+    <br>
+    <div style="display:flex; flex-direction:row; width: max-content">
+        Lampada 02: 
+        <button id="btn031" onclick="doRequest({topic: 'Room02' ,message: '021'})">ON</button>
+        <button id="btn030" onclick="doRequest({topic: 'Room02' ,message: '020'})">OFF</button>
+    </div>
+    <br>
+    <div style="display:flex; flex-direction:row; width: max-content">
+        Lampada 03: 
+        <button id="btn031" onclick="doRequest({topic: 'Room02' ,message: '031'})">ON</button>
+        <button id="btn030" onclick="doRequest({topic: 'Room02' ,message: '030'})">OFF</button>
+    </div>
+    <br>
+    <div style="display:flex; flex-direction:row; width: max-content">
+        Tranca: 
+        <button id="btn031" onclick="doRequest({topic: 'Room02' ,message: '101'})">TRANCAR</button>
+        <button id="btn030" onclick="doRequest({topic: 'Room02' ,message: '100'})">DESTRANCAR</button>
+    </div>
+    <br>
+    <div style="display:flex; flex-direction:row; width: max-content">
+        Controle da Porta: 
+        <button id="btn031" onclick="doRequest({topic: 'Room02' ,message: '201'})">ABRIR</button>
+        <button id="btn030" onclick="doRequest({topic: 'Room02' ,message: '200'})">FECHAR</button>
+    </div>
+</body>
+</html>
