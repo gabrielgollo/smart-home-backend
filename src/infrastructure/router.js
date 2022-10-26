@@ -1,8 +1,7 @@
-const router = require('express').Router();
+const router = require('express').Router()
 
-const mqttRouter = require('../routers/mqtt.router');
+const mqttRouter = require('../routers/mqtt.router')
 
-router.use('/mqtt', mqttRouter);
+router.use('/mqtt', mqttRouter)
 
-
-module.exports = router;
+module.exports = router
